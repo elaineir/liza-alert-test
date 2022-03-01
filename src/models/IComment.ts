@@ -5,5 +5,6 @@ export default interface IComment {
   text: string;
   time: number;
   deleted?: boolean;
+  dead?: boolean;
   kids?: number[] | IComment[];
 }

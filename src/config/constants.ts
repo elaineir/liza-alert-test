@@ -1,4 +1,6 @@
-const defaultNewsDetail = {
+export const newsLimit = 100;
+
+export const defaultNewsDetail = {
   by: '',
   descendants: 0,
   id: 0,
@@ -9,5 +11,3 @@ const defaultNewsDetail = {
   type: '',
   url: '',
 };
-
-export default defaultNewsDetail;

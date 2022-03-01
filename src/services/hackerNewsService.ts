@@ -22,14 +22,14 @@ async function getNewsIds(limit: number): Promise<number[]> {
 
 /** Возвращает объект комментария */
 async function getCommentById(id: number): Promise<IComment> {
-  const url = `${apiURL}${itemURL}${id}.json`;
+  const url = `${apiURL + itemURL + id.toString()}.json`;
   const res = await fetch(url);
   return checkServerResponse<IComment>(res);
 }
 
 /** Возвращает объект новости */
 export async function getNewsDetailById(id: number): Promise<INewsDetail> {
-  const url = `${apiURL}${itemURL}${id}.json`;
+  const url = `${apiURL + itemURL + id.toString()}.json`;
   const res = await fetch(url);
   return checkServerResponse<INewsDetail>(res);
 }
@@ -46,13 +46,14 @@ export async function getComments(commentIds: number[]): Promise<IComment[]> {
     return Promise.all(
       nestedCommentIds.map(async (commentId) => {
         const comment: IComment = await getCommentById(commentId);
-        if (!comment?.kids?.length) {
-          return comment;
+        if (comment?.kids?.length) {
+          const kids: IComment[] = await getAllNestedComments(comment.kids as number[]);
+          if (kids?.length) {
+            comment.kids = kids;
+          }
         }
 
-        const kids: IComment[] = await getAllNestedComments(comment.kids as number[]);
-        const newComment: IComment = { ...comment, kids };
-        return newComment;
+        return comment;
       })
     );
   }
