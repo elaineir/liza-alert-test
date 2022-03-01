@@ -1,0 +1,16 @@
+.button {
+  box-sizing: border-box;
+  padding: 10px 25px;
+  background-color: var(--colorUIPrimary);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}

@@ -7,3 +7,9 @@
   list-style-type: none;
   padding: 24px 20px;
 }
+
+.feed__button {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
