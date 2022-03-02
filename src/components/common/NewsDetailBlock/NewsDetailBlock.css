@@ -82,12 +82,18 @@
 }
 
 .news-detail-block__footer {
-  width: fit-content;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 16px;
   line-height: 1.2;
   margin: 0;
+}
+
+.news-detail-block__comments-count {
+  width: fit-content;
+  display: flex;
+  align-items: center;
 }
 
 .news-detail-block__comment-icon {

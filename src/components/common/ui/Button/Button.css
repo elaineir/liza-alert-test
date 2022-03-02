@@ -2,16 +2,35 @@
   box-sizing: border-box;
   padding: 12px 24px;
   min-height: 48px;
-  background-color: var(--colorUIPrimary);
   border: none;
   border-radius: 16px;
   font-size: 18px;
   line-height: 1.33;
-  font-weight: bold;
   transition: 0.3s ease;
+}
+
+@media screen and (max-width: 767px) {
+  .button {
+    padding: 10px 24px;
+    min-height: 24px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
 }
 
 .button:hover {
   cursor: pointer;
   opacity: 0.9;
+}
+
+.button_color_primary {
+  background-color: var(--colorUIPrimary);
+}
+
+.button_color_secondary {
+  background-color: var(--colorUISecondary);
+}
+
+.button_color_secondary:hover {
+  background-color: var(--colorUIPrimary);
 }

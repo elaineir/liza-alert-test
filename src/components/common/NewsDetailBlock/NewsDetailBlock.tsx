@@ -1,6 +1,7 @@
 import './NewsDetailBlock.css';
 import formatTime from '../../../utils/convert-unix-to-localestring';
-import { CommentIcon } from '../ui';
+import { Button, CommentIcon } from '../ui';
+import { useToNewsFeed } from '../../../hooks';
 
 interface NewsDetailCardProps {
   linkURL: string;
@@ -20,6 +21,8 @@ function NewsDetailBlock({
   commentsCount,
   text,
 }: NewsDetailCardProps): JSX.Element {
+  const returnToNewsFeed = useToNewsFeed();
+
   return (
     <div className="news-detail-block">
       <h2 className="news-detail-block__title">{title}</h2>
@@ -48,8 +51,16 @@ function NewsDetailBlock({
       <p className="news-detail-block__publication-date">{formatTime(publicationDate)}</p>
 
       <p className="news-detail-block__footer">
-        <CommentIcon classMix="news-detail-block__comment-icon" />
-        <span className="news-detail-block__accent">{commentsCount}</span>
+        <div className="news-detail-block__comments-count">
+          <CommentIcon classMix="news-detail-block__comment-icon" />
+          <span className="news-detail-block__accent">{commentsCount}</span>
+        </div>
+        <Button
+          handleClick={returnToNewsFeed}
+          text="To News Feed"
+          color="secondary"
+          classMix="news-detail-block__button-back"
+        />
       </p>
     </div>
   );

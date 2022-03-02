@@ -3,24 +3,14 @@
   box-sizing: border-box;
   padding: 20px;
   border-bottom: 1px solid var(--colorUISecondary);
-}
-
-.header__link {
-  display: block;
-  width: fit-content;
-  margin: 0 auto;
-  color: var(--colorTextSecondary);
-  text-decoration: none;
-  transition: 0.3s ease;
-}
-
-.header__link:hover {
-  color: var(--colorTextPrimary);
+  background-color: var(--background);
 }
 
 .header__title {
   font-size: 28px;
   line-height: 1.2;
   text-align: center;
-  margin: 0;
+  width: fit-content;
+  margin: 0 auto;
+  color: var(--colorTextSecondary);
 }

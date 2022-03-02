@@ -68,19 +68,11 @@
 
 .comment__children {
   box-sizing: border-box;
-  padding-left: 25px;
-  margin: 25px 0 0 25px;
+  padding-left: 15px;
+  margin: 25px 0 0 10px;
   border-left: 1px solid var(--colorUISecondary);
 }
 
 .comment__children .comment {
   border: none;
-}
-
-
-@media screen and (max-width: 767px) {
-  .comment__children {
-    padding-left: 15px;
-    margin-left: 10px;
-  }
 }
