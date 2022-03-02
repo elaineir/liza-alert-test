@@ -8,18 +8,26 @@ interface CommentProps {
   text: string;
   children?: ReactNode;
   deleted: boolean;
+  dead: boolean;
 }
 
 /** Предполагается, что приходящий текст комментария санитайзится сервером */
-function Comment({ author, publicationDate, text, deleted, children }: CommentProps): JSX.Element {
+function Comment({
+  author,
+  publicationDate,
+  text,
+  deleted,
+  dead,
+  children,
+}: CommentProps): JSX.Element {
   return (
-    <div className={`comment ${deleted ? 'comment_deleted' : ''}`}>
+    <div className={`comment ${deleted || dead ? 'comment_deleted' : ''}`}>
       <div className="comment__current">
-        {deleted && (
+        {(deleted || dead) && (
           <p className="comment__text comment__text_deleted">This comment was deleted.</p>
         )}
 
-        {!deleted && (
+        {!(deleted || dead) && (
           <>
             <div className="comment__header">
               <p className="comment__author">{author}</p>

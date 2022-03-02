@@ -88,4 +88,5 @@
 
 .comment__children .comment {
   border: none;
+  margin-bottom: 0;
 }

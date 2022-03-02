@@ -1,10 +1,12 @@
 import './Main.css';
+import { useRef } from 'react';
 import { INewsDetail } from '../../../models';
 import BasePage from '../../layouts/BasePage/BasePage';
 import { NewsCard } from '../../common';
-import { Button, Preloader } from '../../common/ui';
+import { Preloader } from '../../common/ui';
 import routes from '../../../config/routes';
 import { newsPaginationCount } from '../../../config/constants';
+import { useLoadOnScroll } from '../../../hooks';
 
 interface MainProps {
   newsCount: number;
@@ -14,6 +16,13 @@ interface MainProps {
 }
 
 function Main({ newsCount, news, isLoading, loadMoreNews }: MainProps): JSX.Element {
+  const elementRef = useRef(null);
+
+  useLoadOnScroll({
+    elementRef,
+    callbackOnIntersect: loadMoreNews,
+  });
+
   return (
     <BasePage>
       {isLoading && <Preloader />}
@@ -33,7 +42,7 @@ function Main({ newsCount, news, isLoading, loadMoreNews }: MainProps): JSX.Elem
           ))}
 
           {newsCount > newsPaginationCount && news.length !== newsCount && (
-            <Button classMix="feed__button" text="Load more" handleClick={loadMoreNews} />
+            <li aria-hidden ref={elementRef} />
           )}
         </ul>
       )}

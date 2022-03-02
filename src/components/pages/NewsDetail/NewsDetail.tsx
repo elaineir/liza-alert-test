@@ -28,6 +28,7 @@ function NewsDetail(): JSX.Element {
           publicationDate={comment.time}
           text={comment.text}
           deleted={comment.deleted ?? false}
+          dead={comment.dead ?? false}
         >
           {children}
         </Comment>
