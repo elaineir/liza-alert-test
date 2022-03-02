@@ -1,4 +1,4 @@
-import IComment from './IComment';
+import IComment from './comment.json';
 
 export default interface INewsDetail {
   by: string;

@@ -1,5 +1,7 @@
 export const newsLimit = 100;
 
+export const newsPaginationCount = 10;
+
 export const defaultNewsDetail = {
   by: '',
   descendants: 0,

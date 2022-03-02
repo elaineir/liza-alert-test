@@ -45,19 +45,17 @@
   display: flex;
   align-items: center;
   margin-bottom: 24px;
+  font-size: 13px;
+  line-height: 1.2;
 }
 
 .news-card__author {
-  font-size: 13px;
-  line-height: 1.2;
-  font-weight: bold;
+  font-weight: 500;
   margin: 0 15px 0 0;
 }
 
 .news-card__publication-date {
   color: var(--colorTextTertiary);
-  font-size: 13px;
-  line-height: 1.2;
   margin: 0;
 }
 
