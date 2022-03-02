@@ -5,10 +5,22 @@
   border-bottom: 1px solid var(--colorUISecondary);
 }
 
+.header__link {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  color: var(--colorTextSecondary);
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.header__link:hover {
+  color: var(--colorTextPrimary);
+}
+
 .header__title {
   font-size: 28px;
   line-height: 1.2;
   text-align: center;
-  color: var(--colorTextSecondary);
-  margin: 0 auto;
+  margin: 0;
 }

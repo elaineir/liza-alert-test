@@ -47,7 +47,7 @@ function NewsDetailBlock({
       </p>
       <p className="news-detail-block__publication-date">{formatTime(publicationDate)}</p>
 
-      <p className="news-detail-block__comments">
+      <p className="news-detail-block__footer">
         <CommentIcon classMix="news-detail-block__comment-icon" />
         <span className="news-detail-block__accent">{commentsCount}</span>
       </p>

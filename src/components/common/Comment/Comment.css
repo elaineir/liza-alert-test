@@ -14,8 +14,11 @@
   color: var(--colorTextTertiary);
 }
 
-.comment__current {
-
+@media screen and (max-width: 767px) {
+  .comment {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 .comment__header {
@@ -24,6 +27,12 @@
   font-size: 13px;
   line-height: 1.2;
   margin-bottom: 24px;
+}
+
+@media screen and (max-width: 767px) {
+  .comment__header {
+    margin-bottom: 20px;
+  }
 }
 
 .comment__author {
@@ -51,6 +60,12 @@
   margin: 20px 0 0;
 }
 
+@media screen and (max-width: 767px) {
+  .comment__text p {
+    margin-top: 15px;
+  }
+}
+
 .comment__children {
   box-sizing: border-box;
   padding-left: 25px;
@@ -60,4 +75,12 @@
 
 .comment__children .comment {
   border: none;
+}
+
+
+@media screen and (max-width: 767px) {
+  .comment__children {
+    padding-left: 15px;
+    margin-left: 10px;
+  }
 }
