@@ -37,7 +37,7 @@ function Main({ news, isLoading }: MainProps): JSX.Element {
     <BasePage>
       {isLoading && <Preloader />}
 
-      {newsToDisplay?.length && (
+      {newsToDisplay?.length > 0 && (
         <ul className="feed">
           {newsToDisplay.map((newsItem) => (
             <li key={newsItem.id}>

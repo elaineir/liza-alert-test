@@ -10,4 +10,5 @@ export default interface INewsDetail {
   title: string;
   type: string;
   url: string;
+  text: string;
 }

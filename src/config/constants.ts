@@ -12,4 +12,5 @@ export const defaultNewsDetail = {
   title: '',
   type: '',
   url: '',
+  text: '',
 };

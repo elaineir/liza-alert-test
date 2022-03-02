@@ -8,18 +8,25 @@ interface NewsDetailCardProps {
   publicationDate: number;
   author: string;
   commentsCount: number;
+  text: string;
 }
 
+/** Предполагается, что приходящий текст поста санитайзится сервером */
 function NewsDetailBlock({
   linkURL,
   title,
   publicationDate,
   author,
   commentsCount,
+  text,
 }: NewsDetailCardProps): JSX.Element {
   return (
     <div className="news-detail-block">
       <h2 className="news-detail-block__title">{title}</h2>
+
+      {text && (
+        <div className="news-detail-block__text" dangerouslySetInnerHTML={{ __html: text }} />
+      )}
 
       {linkURL && (
         <p className="news-detail-block__text">
