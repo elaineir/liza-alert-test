@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { INewsDetail } from '../models';
 import { getNews } from '../services/hacker-news.service';
-import { newsLimit } from '../config/constants';
+import { newsLimit, newsPaginationCount } from '../config/constants';
 
 function useNewsFeed() {
   const [news, setNews] = useState<INewsDetail[]>([]);
@@ -17,11 +17,33 @@ function useNewsFeed() {
       .finally(() => setIsLoading(false));
   }
 
+  const [newsToDisplay, setNewsToDisplay] = useState<INewsDetail[]>([]);
+  const [lastNewsIndex, setLastNewsIndex] = useState(0);
+
+  const loadMoreNews = useCallback(() => {
+    setNewsToDisplay((prevNews) => [
+      ...prevNews,
+      ...news.slice(lastNewsIndex, lastNewsIndex + newsPaginationCount),
+    ]);
+    setLastNewsIndex((prevIndex) => prevIndex + newsPaginationCount);
+  }, [lastNewsIndex]);
+
   useEffect(loadNews, []);
 
+  useEffect(() => {
+    if (news?.length > newsPaginationCount) {
+      setNewsToDisplay(news.slice(0, newsPaginationCount));
+      setLastNewsIndex((prevIndex) => prevIndex + newsPaginationCount);
+    } else {
+      setNewsToDisplay(news);
+    }
+  }, [news]);
+
   return {
-    news,
+    newsCount: news.length,
+    news: newsToDisplay,
     isLoading,
+    loadMoreNews,
   };
 }
 

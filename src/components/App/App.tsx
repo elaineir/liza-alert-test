@@ -3,11 +3,11 @@ import Router from '../navigation/Router';
 import { useNewsFeed } from '../../hooks';
 
 function App() {
-  const { news, isLoading } = useNewsFeed();
+  const { news, newsCount, isLoading, loadMoreNews } = useNewsFeed();
 
   return (
     <div className="page">
-      <Router news={news} isLoading={isLoading} />
+      <Router news={news} isLoading={isLoading} newsCount={newsCount} loadMoreNews={loadMoreNews} />
     </div>
   );
 }

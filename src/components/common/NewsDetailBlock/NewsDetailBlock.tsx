@@ -57,7 +57,7 @@ function NewsDetailBlock({
         </div>
         <Button
           handleClick={returnToNewsFeed}
-          text="To News Feed"
+          text="Back to News Feed"
           color="secondary"
           classMix="news-detail-block__button-back"
         />

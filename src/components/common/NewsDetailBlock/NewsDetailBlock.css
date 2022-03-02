@@ -49,10 +49,23 @@
   font-size: 22px;
   line-height: 1.2;
   margin: 0 auto 50px;
+  word-wrap: break-word;
 }
 
 .news-detail-block__text p {
   margin: 30px 0 0;
+  word-wrap: break-word;
+}
+
+.news-detail-block__text a {
+  text-decoration: none;
+  color: var(--colorTextSecondary);
+  word-wrap: break-word;
+  transition: 0.3s ease;
+}
+
+.news-detail-block__text a:hover {
+  color: var(--colorTextPrimary);
 }
 
 @media screen and (max-width: 767px) {
@@ -85,6 +98,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 15px;
   font-size: 16px;
   line-height: 1.2;
   margin: 0;

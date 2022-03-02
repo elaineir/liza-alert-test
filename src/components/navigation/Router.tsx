@@ -6,13 +6,15 @@ import { INewsDetail } from '../../models';
 interface RouterProps {
   news: INewsDetail[];
   isLoading: boolean;
+  newsCount: number;
+  loadMoreNews: () => void;
 }
 
-function Router({ news, isLoading }: RouterProps): JSX.Element {
+function Router({ news, isLoading, loadMoreNews, newsCount }: RouterProps): JSX.Element {
   return (
     <Switch>
       <Route exact path={routes.mainPage}>
-        <Main news={news} isLoading={isLoading} />
+        <Main news={news} isLoading={isLoading} loadMoreNews={loadMoreNews} newsCount={newsCount} />
       </Route>
       <Route path={`${routes.newsDetail.base}${routes.newsDetail.id}`} component={NewsDetail} />
     </Switch>

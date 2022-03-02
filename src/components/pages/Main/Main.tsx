@@ -1,5 +1,4 @@
 import './Main.css';
-import { useCallback, useEffect, useState } from 'react';
 import { INewsDetail } from '../../../models';
 import BasePage from '../../layouts/BasePage/BasePage';
 import { NewsCard } from '../../common';
@@ -8,38 +7,20 @@ import routes from '../../../config/routes';
 import { newsPaginationCount } from '../../../config/constants';
 
 interface MainProps {
+  newsCount: number;
   news: INewsDetail[];
   isLoading: boolean;
+  loadMoreNews: () => void;
 }
 
-function Main({ news, isLoading }: MainProps): JSX.Element {
-  const [newsToDisplay, setNewsToDisplay] = useState<INewsDetail[]>([]);
-  const [lastNewsIndex, setLastNewsIndex] = useState(0);
-
-  const loadMoreNews = useCallback(() => {
-    setNewsToDisplay((prevNews) => [
-      ...prevNews,
-      ...news.slice(lastNewsIndex, lastNewsIndex + newsPaginationCount),
-    ]);
-    setLastNewsIndex((prevIndex) => prevIndex + newsPaginationCount);
-  }, [lastNewsIndex]);
-
-  useEffect(() => {
-    if (news?.length > newsPaginationCount) {
-      setNewsToDisplay(news.slice(0, newsPaginationCount));
-      setLastNewsIndex((prevIndex) => prevIndex + newsPaginationCount);
-    } else {
-      setNewsToDisplay(news);
-    }
-  }, [news]);
-
+function Main({ newsCount, news, isLoading, loadMoreNews }: MainProps): JSX.Element {
   return (
     <BasePage>
       {isLoading && <Preloader />}
 
-      {newsToDisplay?.length > 0 && (
+      {news?.length > 0 && (
         <ul className="feed">
-          {newsToDisplay.map((newsItem) => (
+          {news.map((newsItem) => (
             <li key={newsItem.id}>
               <NewsCard
                 title={newsItem.title}
@@ -51,7 +32,7 @@ function Main({ news, isLoading }: MainProps): JSX.Element {
             </li>
           ))}
 
-          {news.length > newsPaginationCount && newsToDisplay.length !== news.length && (
+          {newsCount > newsPaginationCount && news.length !== newsCount && (
             <Button classMix="feed__button" text="Load more" handleClick={loadMoreNews} />
           )}
         </ul>

@@ -49,6 +49,7 @@
 .comment__text {
   font-size: 16px;
   line-height: 1.2;
+  word-wrap: break-word;
 }
 
 .comment__text_deleted {
@@ -58,6 +59,18 @@
 
 .comment__text p {
   margin: 20px 0 0;
+  word-wrap: break-word;
+}
+
+.comment__text a {
+  text-decoration: none;
+  color: var(--colorTextSecondary);
+  word-wrap: break-word;
+  transition: 0.3s ease;
+}
+
+.comment__text a:hover {
+  color: var(--colorTextPrimary);
 }
 
 @media screen and (max-width: 767px) {
