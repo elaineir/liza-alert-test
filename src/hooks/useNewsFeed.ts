@@ -9,10 +9,7 @@ function useNewsFeed() {
 
   function loadNews() {
     getNews(newsLimit)
-      .then((allNews) => {
-        setNews(allNews);
-        console.log(allNews);
-      })
+      .then((allNews) => setNews(allNews))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }

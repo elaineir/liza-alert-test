@@ -14,12 +14,9 @@ function useNewsDetail(id: number) {
           const kids = await getComments(news.kids as number[]);
           if (kids) {
             const newNewsDetail = { ...news, kids };
-            console.log(newNewsDetail);
             return setNewsDetail(newNewsDetail);
           }
         }
-
-        console.log(news);
         return setNewsDetail(news);
       })
       .catch((err) => console.log(err))

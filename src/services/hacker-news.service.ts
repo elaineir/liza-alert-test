@@ -16,33 +16,49 @@ async function checkServerResponse<T>(res: Response): Promise<T> {
 /** Возвращает массив айдишников новостей, на вход принимает число - сколько загрузить новостей */
 async function getNewsIds(limit: number): Promise<number[]> {
   const url = `${apiURL + newsURL}?orderBy="$key"&limitToFirst=${limit}`;
-  const res = await fetch(url);
-  return checkServerResponse<number[]>(res);
+  try {
+    const res = await fetch(url);
+    return await checkServerResponse<number[]>(res);
+  } catch (err) {
+    return await checkServerResponse(err as Response);
+  }
 }
 
 /** Возвращает объект комментария */
 async function getCommentById(id: number): Promise<IComment> {
   const url = `${apiURL + itemURL + id.toString()}.json`;
-  const res = await fetch(url);
-  return checkServerResponse<IComment>(res);
+  try {
+    const res = await fetch(url);
+    return await checkServerResponse<IComment>(res);
+  } catch (err) {
+    return await checkServerResponse(err as Response);
+  }
 }
 
 /** Возвращает объект новости */
 export async function getNewsDetailById(id: number): Promise<INewsDetail> {
   const url = `${apiURL + itemURL + id.toString()}.json`;
-  const res = await fetch(url);
-  return checkServerResponse<INewsDetail>(res);
+  try {
+    const res = await fetch(url);
+    return await checkServerResponse<INewsDetail>(res);
+  } catch (err) {
+    return await checkServerResponse(err as Response);
+  }
 }
 
 /** Возвращает массив объектов новостей */
 export async function getNews(limit: number): Promise<INewsDetail[]> {
-  const newsIds: number[] = await getNewsIds(limit);
-  return Promise.all(newsIds.map(async (id) => getNewsDetailById(id)));
+  try {
+    const newsIds: number[] = await getNewsIds(limit);
+    return await Promise.all(newsIds.map(async (id) => getNewsDetailById(id)));
+  } catch (err) {
+    return await checkServerResponse(err as Response);
+  }
 }
 
 /** Возвращает массив комментариев с вложенными объектами комментариев (рекурсивное построение) */
 export async function getComments(commentIds: number[]): Promise<IComment[]> {
-  // TODO тяжело, оптимизировать
+  // TODO оптимизировать
   function sortCommentsByTime(comments: IComment[]) {
     return comments.sort((a, b) => {
       if (a.time < b.time) return -1;
@@ -52,21 +68,25 @@ export async function getComments(commentIds: number[]): Promise<IComment[]> {
   }
 
   async function getAllNestedComments(nestedCommentIds: number[]): Promise<IComment[]> {
-    const comments = await Promise.all(
-      nestedCommentIds.map(async (commentId) => {
-        const comment: IComment = await getCommentById(commentId);
-        if (comment?.kids?.length) {
-          const kids: IComment[] = await getAllNestedComments(comment.kids as number[]);
-          if (kids?.length) {
-            comment.kids = sortCommentsByTime(kids);
+    try {
+      const comments = await Promise.all(
+        nestedCommentIds.map(async (commentId) => {
+          const comment: IComment = await getCommentById(commentId);
+          if (comment?.kids?.length) {
+            const kids: IComment[] = await getAllNestedComments(comment.kids as number[]);
+            if (kids?.length) {
+              comment.kids = sortCommentsByTime(kids);
+            }
           }
-        }
 
-        return comment;
-      })
-    );
+          return comment;
+        })
+      );
 
-    return sortCommentsByTime(comments);
+      return sortCommentsByTime(comments);
+    } catch (err) {
+      return Promise.reject(err);
+    }
   }
 
   return getAllNestedComments(commentIds);
