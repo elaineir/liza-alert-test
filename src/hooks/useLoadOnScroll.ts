@@ -10,7 +10,6 @@ interface UseLoadOnScrollArgs {
 function useLoadOnScroll({ elementRef, callbackOnIntersect, callbackOnHide }: UseLoadOnScrollArgs) {
   const observer = useRef<null | IntersectionObserver>(null);
 
-  // eslint-disable-next-line consistent-return
   useLayoutEffect(() => {
     if (elementRef?.current) {
       const options = {
@@ -28,13 +27,13 @@ function useLoadOnScroll({ elementRef, callbackOnIntersect, callbackOnHide }: Us
       }, options);
 
       observer.current.observe(elementRef.current);
-
-      return () => {
-        if (observer?.current && elementRef?.current) {
-          observer.current.unobserve(elementRef.current);
-        }
-      };
     }
+
+    return () => {
+      if (observer?.current && elementRef?.current) {
+        observer.current.unobserve(elementRef.current);
+      }
+    };
   }, [callbackOnIntersect, callbackOnHide, elementRef]);
 }
 
