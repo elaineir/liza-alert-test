@@ -12,3 +12,8 @@
   width: 100%;
   margin: 0 auto;
 }
+
+.feed__link {
+  text-decoration: none;
+  color: var(--colorTextPrimary);
+}

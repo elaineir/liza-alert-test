@@ -45,9 +45,9 @@ function NewsDetail(): JSX.Element {
         <div className="news-detail">
           <Button
             handleClick={returnToNewsFeed}
-            text="Back"
-            color="secondary"
+            text="Back to News Feed"
             classMix="news-detail__button-back"
+            isArrow
           />
           <div>
             <NewsDetailBlock

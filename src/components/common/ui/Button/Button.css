@@ -9,12 +9,25 @@
   transition: 0.3s ease;
 }
 
+.button_type_arrow {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  background-color: var(--background);
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 767px) {
   .button {
     padding: 10px 24px;
     min-height: 24px;
     border-radius: 8px;
     font-size: 16px;
+  }
+
+  .button_type_arrow {
+    padding: 0;
+    border-radius: 50%;
   }
 }
 
@@ -33,4 +46,17 @@
 
 .button_color_secondary:hover {
   background-color: var(--colorUIPrimary);
+}
+
+.button__arrow {
+  width: 60px;
+  height: 60px;
+}
+
+.button__arrow_color_primary {
+  fill: var(--colorUIPrimary);
+}
+
+.button__arrow_color_secondary {
+  fill: var(--colorUISecondary);
 }

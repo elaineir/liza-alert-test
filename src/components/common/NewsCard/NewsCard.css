@@ -79,6 +79,7 @@
   line-height: 1.17;
   font-weight: bold;
   margin: 0;
+  transition: 0.3s ease;
 }
 
 @media screen and (max-width: 767px) {
@@ -105,13 +106,7 @@
   margin: 0;
 }
 
-.news-card__link {
-  text-decoration: none;
-  color: var(--colorTextPrimary);
-  transition: 0.3s ease;
-}
-
-.news-card__link:hover {
+.news-card:hover .news-card__title {
   color: var(--colorLinkHover);
 }
 
@@ -122,7 +117,7 @@
   transition: 0.3s ease;
 }
 
-.news-card__link:hover .news-card__arrow {
+.news-card:hover .news-card__arrow {
   transform: translateX(10px);
   opacity: 1;
 }
