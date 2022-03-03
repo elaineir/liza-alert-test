@@ -1,6 +1,6 @@
 # Тестовое ЛизаАлерт
 
-Демо: https://elaineir.github.io/liza-alert-test/
+Демо: https://hacker-news-la.netlify.app/
 
 ## Главная страница
 
