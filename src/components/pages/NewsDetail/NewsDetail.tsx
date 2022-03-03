@@ -49,7 +49,7 @@ function NewsDetail(): JSX.Element {
             classMix="news-detail__button-back"
             isArrow
           />
-          <div>
+          <div className="news-detail__details">
             <NewsDetailBlock
               linkURL={newsDetail.url}
               author={newsDetail.by}

@@ -32,7 +32,13 @@ function Main({ newsCount, news, isLoading, loadMoreNews }: MainProps): JSX.Elem
         <ul className="feed">
           {news.map((newsItem) => (
             <li key={newsItem.id}>
-              <Link className="feed__link" to={`${routes.newsDetail.base}/${newsItem.id}`}>
+              <Link
+                className="feed__link"
+                to={{
+                  pathname: `${routes.newsDetail.base}/${newsItem.id}`,
+                  state: { fromNewsFeed: true },
+                }}
+              >
                 <NewsCard
                   title={newsItem.title}
                   author={newsItem.by}
