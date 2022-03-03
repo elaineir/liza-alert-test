@@ -7,11 +7,7 @@ interface UseLoadOnScrollArgs {
 }
 
 // хук используется для подгрузки данных и других манипуляций при появлении elementRef во вьюпорте
-const useLoadOnScroll = ({
-  elementRef,
-  callbackOnIntersect,
-  callbackOnHide,
-}: UseLoadOnScrollArgs) => {
+function useLoadOnScroll({ elementRef, callbackOnIntersect, callbackOnHide }: UseLoadOnScrollArgs) {
   const observer = useRef<null | IntersectionObserver>(null);
 
   // eslint-disable-next-line consistent-return
@@ -40,6 +36,6 @@ const useLoadOnScroll = ({
       };
     }
   }, [callbackOnIntersect, callbackOnHide, elementRef]);
-};
+}
 
 export default useLoadOnScroll;
