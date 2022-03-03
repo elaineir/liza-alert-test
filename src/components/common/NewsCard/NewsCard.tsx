@@ -13,7 +13,9 @@ interface NewsCardProps {
 function NewsCard({ title, score, author, publicationDate, linkURL }: NewsCardProps): JSX.Element {
   return (
     <article className="news-card">
-      <p className={`news-card__score ${score > 0 ? 'news-card__score_positive' : ''}`}>{score}</p>
+      <div className={`news-card__score ${score > 0 ? 'news-card__score_positive' : ''}`}>
+        {score}
+      </div>
 
       <div className="news-card__content">
         <div className="news-card__header">

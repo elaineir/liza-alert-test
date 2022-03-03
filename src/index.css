@@ -14,6 +14,7 @@
   --colorTextPrimary: #212329;
   --colorTextSecondary: #ff6600;
   --colorTextTertiary: #757575;
+  --colorInactive: #d1d1d1;
   --colorLinkHover: #ff6600;
 
   background-color: var(--background);
