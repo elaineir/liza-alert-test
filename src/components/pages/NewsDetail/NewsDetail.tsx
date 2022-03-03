@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { ReactNode } from 'react';
 import BasePage from '../../layouts/BasePage/BasePage';
 import { Comment, NewsDetailBlock } from '../../common';
-import { Preloader } from '../../common/ui';
-import { useNewsDetail } from '../../../hooks';
+import { Button, Preloader } from '../../common/ui';
+import { useNewsDetail, useToNewsFeed } from '../../../hooks';
 import { IComment } from '../../../models';
 
 interface NewsDetailParams {
@@ -14,6 +14,7 @@ interface NewsDetailParams {
 function NewsDetail(): JSX.Element {
   const { id }: NewsDetailParams = useParams();
   const { newsDetail, isLoading } = useNewsDetail(Number(id));
+  const returnToNewsFeed = useToNewsFeed();
 
   function renderCommentsTree(comments: IComment[]): (JSX.Element | null)[] {
     return comments.map((comment) => {
@@ -42,20 +43,28 @@ function NewsDetail(): JSX.Element {
 
       {!isLoading && (
         <div className="news-detail">
-          <NewsDetailBlock
-            linkURL={newsDetail.url}
-            author={newsDetail.by}
-            title={newsDetail.title}
-            publicationDate={newsDetail.time}
-            commentsCount={newsDetail.descendants}
-            text={newsDetail.text}
+          <Button
+            handleClick={returnToNewsFeed}
+            text="Back"
+            color="secondary"
+            classMix="news-detail__button-back"
           />
+          <div>
+            <NewsDetailBlock
+              linkURL={newsDetail.url}
+              author={newsDetail.by}
+              title={newsDetail.title}
+              publicationDate={newsDetail.time}
+              commentsCount={newsDetail.descendants}
+              text={newsDetail.text}
+            />
 
-          {newsDetail?.kids?.length > 0 && (
-            <div className="news-detail__comments">
-              {renderCommentsTree(newsDetail.kids as IComment[])}
-            </div>
-          )}
+            {newsDetail?.kids?.length > 0 && (
+              <div className="news-detail__comments">
+                {renderCommentsTree(newsDetail.kids as IComment[])}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </BasePage>

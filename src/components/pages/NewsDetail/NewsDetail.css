@@ -1,12 +1,39 @@
 .news-detail {
+  box-sizing: border-box;
   position: relative;
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 30px 80px 0 0;
+  display: flex;
+  gap: 20px;
+}
+
+@media screen and (max-width: 1023px) {
+  .news-detail {
+    flex-direction: column;
+    padding: 0;
+  }
 }
 
 .news-detail__comments {
   box-sizing: border-box;
   padding: 30px 0 0;
   border-top: 2px solid var(--colorUISecondary);
+}
+
+.news-detail__button-back {
+  position: sticky;
+  top: 20px;
+  display: block;
+  width: 80px;
+  height: fit-content;
+  flex-shrink: 0;
+  padding: 12px;
+}
+
+@media screen and (max-width: 1023px) {
+  .news-detail__button-back {
+    align-self: flex-end;
+  }
 }

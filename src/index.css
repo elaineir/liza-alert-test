@@ -9,13 +9,13 @@
 
   --background: #fcfcfc;
   --backgroundCard: #fff;
-  --colorUIPrimary: #ff6600;
+  --colorUIPrimary: #ab15e9;
   --colorUISecondary: #d1d1d1;
   --colorTextPrimary: #212329;
-  --colorTextSecondary: #ff6600;
+  --colorTextSecondary: #ab15e9;
   --colorTextTertiary: #757575;
   --colorInactive: #d1d1d1;
-  --colorLinkHover: #ff6600;
+  --colorLinkHover: #ab15e9;
 
   background-color: var(--background);
   color: var(--colorTextPrimary);
