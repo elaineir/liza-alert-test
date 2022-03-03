@@ -42,20 +42,31 @@ export async function getNews(limit: number): Promise<INewsDetail[]> {
 
 /** Возвращает массив комментариев с вложенными объектами комментариев (рекурсивное построение) */
 export async function getComments(commentIds: number[]): Promise<IComment[]> {
+  // TODO тяжело, оптимизировать
+  function sortCommentsByTime(comments: IComment[]) {
+    return comments.sort((a, b) => {
+      if (a.time < b.time) return -1;
+      if (a.time > b.time) return 1;
+      return 0;
+    });
+  }
+
   async function getAllNestedComments(nestedCommentIds: number[]): Promise<IComment[]> {
-    return Promise.all(
+    const comments = await Promise.all(
       nestedCommentIds.map(async (commentId) => {
         const comment: IComment = await getCommentById(commentId);
         if (comment?.kids?.length) {
           const kids: IComment[] = await getAllNestedComments(comment.kids as number[]);
           if (kids?.length) {
-            comment.kids = kids;
+            comment.kids = sortCommentsByTime(kids);
           }
         }
 
         return comment;
       })
     );
+
+    return sortCommentsByTime(comments);
   }
 
   return getAllNestedComments(commentIds);
